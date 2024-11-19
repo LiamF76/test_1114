@@ -32,7 +32,7 @@ try {
 $search_results = null;
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $search_term = '%' . $_GET['search'] . '%';
-    $search_sql = 'SELECT stu_id, stu_name, stu_year, stu_GPA FROM books WHERE stu_name LIKE :search';
+    $search_sql = 'SELECT stu_id, stu_name, stu_year, stu_GPA FROM student_records WHERE stu_name LIKE :search';
     $search_stmt = $pdo->prepare($search_sql);
     $search_stmt->execute(['search' => $search_term]);
     $search_results = $search_stmt->fetchAll();
@@ -46,21 +46,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stu_year = htmlspecialchars($_POST['stu_year']);
         $stu_GPA = htmlspecialchars($_POST['stu_GPA']);
         
-        $insert_sql = 'INSERT INTO books (stu_name, stu_year, stu_GPA) VALUES (:stu_name, :stu_year, :stu_GPA)';
+        $insert_sql = 'INSERT INTO student_records (stu_name, stu_year, stu_GPA) VALUES (:stu_name, :stu_year, :stu_GPA)';
         $stmt_insert = $pdo->prepare($insert_sql);
         $stmt_insert->execute(['stu_name' => $stu_name, 'stu_year' => $stu_year, 'stu_GPA' => $stu_GPA]);
     } elseif (isset($_POST['delete_id'])) {
         // Delete an entry
         $delete_id = (int) $_POST['delete_id'];
         
-        $delete_sql = 'DELETE FROM books WHERE stu_id = :stu_id';
+        $delete_sql = 'DELETE FROM student_records WHERE stu_id = :stu_id';
         $stmt_delete = $pdo->prepare($delete_sql);
         $stmt_delete->execute(['stu_id' => $delete_id]);
     }
 }
-
+qqqqqqqqqqqqqqq
 // Get all books for main table
-$sql = 'SELECT stu_id, stu_name, stu_year, stu_GPA FROM books';
+$sql = 'SELECT stu_id, stu_name, stu_year, stu_GPA FROM student_records';
 $stmt = $pdo->query($sql);
 ?>
 
