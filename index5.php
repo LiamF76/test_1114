@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_delete->execute(['stu_id' => $delete_id]);
     }
 }
-qqqqqqqqqqqqqqq
+
 // Get all books for main table
 $sql = 'SELECT stu_id, stu_name, stu_year, stu_GPA FROM student_records';
 $stmt = $pdo->query($sql);
